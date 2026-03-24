@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+# Añade estas importaciones para las señales
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Song(models.Model):
@@ -61,3 +64,11 @@ class SongUser(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.song.title}"
+
+
+@receiver(post_save, sender=SongUser)
+def update_song_play_count(sender, instance, created, **kwargs):
+    if created:
+        song = instance.song
+        song.number_times_played += 1
+        song.save()

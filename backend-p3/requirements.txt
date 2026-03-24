@@ -37,3 +37,4 @@ urllib3==2.5.0
 wheel==0.45.1
 whitenoise==6.9.0
 pillow==11.1.0
+coverage
