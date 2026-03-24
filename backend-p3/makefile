@@ -1,7 +1,7 @@
 export DJANGOPORT := 8000
 export DEBUG := True
 export  PGHOST := localhost
-export  PGDATABASE := song
+export  PGDATABASE := songdatabase
 export  PGUSER := alumnodb
 export  PGPASSWORD := alumnodb
 PSQL = psql

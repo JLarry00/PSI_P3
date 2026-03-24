@@ -65,6 +65,32 @@ class SongUser(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.song.title}"
 
+    class Meta:
+        unique_together = ('song', 'user')
+
+    @classmethod
+    def create_or_update(cls, song, request, **kwargs):
+        """
+        Crea un SongUser si no existe para la pareja song/user.
+        El usuario se obtiene de la sesión (request.user).
+        Si existe, actualiza los campos con los valores proporcionados en kwargs.
+        Devuelve la instancia y un booleano created (True si se creó, False si se actualizó).
+        """
+        user = getattr(request, "user", None)
+        if user is None or not user.is_authenticated:
+            raise ValueError("No authenticated user in session.")
+        obj, created = cls.objects.get_or_create(song=song, user=user, defaults=kwargs)
+        if not created:
+            updated = False
+            for key, value in kwargs.items():
+                if hasattr(obj, key):
+                    setattr(obj, key, value)
+                    updated = True
+            if updated:
+                obj.save()
+        return obj, created
+    
+    # api -> coger usuario de la sesion
 
 @receiver(post_save, sender=SongUser)
 def update_song_play_count(sender, instance, created, **kwargs):
