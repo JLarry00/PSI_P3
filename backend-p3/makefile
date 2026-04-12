@@ -60,7 +60,7 @@ coverage:
 	coverage run manage.py test && coverage report -m
 
 clear_media:
-	find media/ -type f \( -name 'cover_*.jpg' -o -name 'cover.*' -o -name 'test_*.mp3' -o -name 'test_*.lrc' -o -name 'test.*' \) -delete
+	find media/ -maxdepth 1 -type f \( -name 'test.*' -o -name 'test_*' -o -name 'cover.*' -o -name 'cover_*' \) -print -delete
 
 flake8:
 	flake8 song_models

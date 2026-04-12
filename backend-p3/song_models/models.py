@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Añade estas importaciones para las señales
-from django.db.models.signals import post_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
 
@@ -91,6 +91,13 @@ class SongUser(models.Model):
         return obj, created
     
     # api -> coger usuario de la sesion
+
+
+@receiver(pre_save, sender=SongUser)
+def delete_previous_songuser(sender, instance, **kwargs):
+    if not instance.pk:  # Verifica que es una creación y no una actualización de un objeto existente
+        SongUser.objects.filter(song=instance.song, user=instance.user).delete()
+
 
 @receiver(post_save, sender=SongUser)
 def update_song_play_count(sender, instance, created, **kwargs):
