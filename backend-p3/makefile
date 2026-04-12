@@ -37,8 +37,8 @@ dbshell:
 	@$(CMD) dbshell
 
 static:
-	@echo manage.py collectstatic
-	@$(CMD) collectstatic
+	@echo manage.py collectstatic --no-input
+	@$(CMD) collectstatic --no-input
 
 update_db: clear_db
 	@echo del migrations and make migrations and migrate
