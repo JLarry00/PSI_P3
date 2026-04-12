@@ -60,7 +60,12 @@ coverage:
 	coverage run manage.py test && coverage report -m
 
 clear_media:
-	find media/ -maxdepth 1 -type f \( -name 'test.*' -o -name 'test_*' -o -name 'cover.*' -o -name 'cover_*' \) -print -delete
+	@echo "Limpiando archivos generados en media..."
+	@find media/ -type f \
+		-not -name "ABBA - Super Trouper.*" \
+		-not -name "Alan Jackson - Here In The Real World.*" \
+		-not -name "Beegees - Don't Forget to Remember.*" \
+		-delete
 
 flake8:
 	flake8 song_models
