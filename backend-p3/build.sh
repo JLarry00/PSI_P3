@@ -1,4 +1,8 @@
 pip install -r requirements.txt
-python manage.py collectstatic --no-input
-python manage.py migrate
-python manage.py populate
+
+make collectstatic
+
+make update_models
+
+make populate
+
