@@ -9,7 +9,7 @@ CMD = python manage.py
 # Add applications to APP variable as they are
 # added to settings.py file
 APP = song_models 
-export DATABASE_URL = postgres://alumnodb:alumnodb@localhost/$(PGDATABASE)
+#export DATABASE_URL = postgres://alumnodb:alumnodb@localhost/$(PGDATABASE)
 
 ## delete and create a new empty database
 clear_db:
