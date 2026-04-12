@@ -1,9 +1,9 @@
-export DJANGOPORT := 8000
-export DEBUG := True
-export  PGHOST := localhost
-export  PGDATABASE := songdatabase
-export  PGUSER := alumnodb
-export  PGPASSWORD := alumnodb
+# export DJANGOPORT := 8000
+# export DEBUG := True
+# export  PGHOST := localhost
+# export  PGDATABASE := songdatabase
+# export  PGUSER := alumnodb
+# export  PGPASSWORD := alumnodb
 PSQL = psql
 CMD = python manage.py
 # Add applications to APP variable as they are
