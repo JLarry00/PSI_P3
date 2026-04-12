@@ -262,7 +262,7 @@ vite.config.ts.timestamp-*
 # ============================================================
 
 # Ignorar .env en subdirectorios (credenciales locales del backend)
-backend-p3/.env
+#backend-p3/.env
 backend-p3/.env.*
 !backend-p3/.env.example
 
