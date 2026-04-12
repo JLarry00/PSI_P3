@@ -1,6 +1,6 @@
 pip install -r requirements.txt
 
-make collectstatic
+make static
 
 make update_models
 
