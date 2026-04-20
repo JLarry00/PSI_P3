@@ -1,5 +1,10 @@
 # PSI Práctica 3 — SongProject
 
+## Autores
+
+- Alejandro Morillas Parra
+- Juan Larrondo Fernández de Córdoba
+
 Aplicación web para el aprendizaje de idiomas mediante canciones.
 Backend implementado con Django + Django REST Framework. Base de datos PostgreSQL en neon.tech. Desplegado en render.com.
 
