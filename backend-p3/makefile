@@ -1,9 +1,12 @@
 export DJANGOPORT := 8000
 # export DEBUG := True
-# export  PGHOST := localhost
-# export  PGDATABASE := songdatabase
-# export  PGUSER := alumnodb
-# export  PGPASSWORD := alumnodb
+# dropdb/createdb/psql usan libpq (PG*). Credenciales por defecto = práctica (alumnodb).
+# El rol alumnodb en PostgreSQL debe existir y tener CREATEDB (o ser superuser).
+# Sobrescribir si hace falta: make clear_db PGUSER=postgres
+export PGHOST ?= localhost
+export PGDATABASE := songdatabase
+export PGUSER ?= alumnodb
+export PGPASSWORD ?= alumnodb
 PSQL = psql
 CMD = python manage.py
 # Add applications to APP variable as they are
@@ -15,7 +18,7 @@ APP = song_models
 clear_db:
 	@echo Clear Database
 	dropdb --if-exists $(PGDATABASE)
-	createdb
+	createdb $(PGDATABASE)
 
 # create alumnodb super user
 create_super_user:
