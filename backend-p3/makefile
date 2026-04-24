@@ -1,9 +1,9 @@
 export DJANGOPORT := 8000
 # export DEBUG := True
-# export  PGHOST := localhost
-# export  PGDATABASE := songdatabase
-# export  PGUSER := alumnodb
-# export  PGPASSWORD := alumnodb
+export  PGHOST := localhost
+export  PGDATABASE := songdatabase
+export  PGUSER := alumnodb
+export  PGPASSWORD := alumnodb
 PSQL = psql
 CMD = python manage.py
 # Add applications to APP variable as they are
@@ -26,7 +26,7 @@ runserver:
 
 update_models:
 	$(CMD) makemigrations $(APP)
-	$(CMD) migrate
+	$(CMD) migrate --noinput
 
 shell:
 	@echo manage.py  shell
@@ -40,7 +40,7 @@ static:
 	@echo manage.py collectstatic --no-input
 	@$(CMD) collectstatic --no-input
 
-update_db: clear_db
+update_db:
 	@echo del migrations and make migrations and migrate
 	rm -rf */migrations
 	@$(CMD) makemigrations $(APP) 
