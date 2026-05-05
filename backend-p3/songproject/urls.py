@@ -14,11 +14,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
 from django.conf import settings
-from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path, re_path
 from django.views.generic import RedirectView
+from django.views.static import serve
+
+
+def serve_media(request, path, **kwargs):
+    return serve(request, path, document_root=settings.MEDIA_ROOT, **kwargs)
+
 
 urlpatterns = [
     path('', RedirectView.as_view(url='api/v1/', permanent=False)),
@@ -26,6 +31,6 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.authtoken')),
     path('api/v1/', include('api.urls')),
+    # Render runs with DEBUG=False, so we expose bundled media explicitly.
+    re_path(r'^media/(?P<path>.*)$', serve_media),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
