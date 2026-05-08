@@ -19,7 +19,7 @@ Backend implementado con Django + Django REST Framework. Base de datos PostgreSQ
 | **Panel admin** | https://three-songproject-99-2311-2026-v1.onrender.com/admin/ |
 | **Base de datos** | neon.tech (ver `backend-p3/.env`) |
 
-> **Nota**: el plan gratuito de render.com apaga el servicio tras 15 min de inactividad. La primera petición puede tardar ~30 segundos en despertar.
+> **Nota**: el plan gratuito de render.com apaga el servicio tras 15 min de inactividad. La primera petición puede tardar ~30 segundos en despertar
 
 ---
 
